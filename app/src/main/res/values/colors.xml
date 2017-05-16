@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#081c24</color>
+    <color name="colorPrimaryDark">#06161d</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="tabIndicator">#00d474</color>
+    <color name="tabDivider">#081c24</color>
+    <color name="tabSelected">#FFFFFF</color>
+    <color name="tabUnselected">#acb4b8</color>
+
+    <color name="grey">#acabab</color>
+</resources>

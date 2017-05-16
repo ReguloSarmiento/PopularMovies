@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Popular Movies</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="must_implement">must implement IOnClickListener</string>
+
+    <string name="genres">Genres:</string>
+    <string name="release_date">Release Date:</string>
+    <string name="popularity">Vote Average:</string>
+    <string name="overview">Overview:</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="by_popularity">Order by Popularity</string>
+    <string name="by_rating">Order by Rating</string>
+
+    <string name="retry">Retry</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+
+    <string name="review_author">&lt;b>Author:&lt;/b> %s</string>
+    <string name="review">Review:</string>
+    <string name="error_loading_trailer">Can\'t load trailer!</string>
+    <string name="error_loading_reviews">Can\'t load reviews!</string>
+    <string name="by_favorite">Order by Favorites</string>
+    <string name="favorites_movies">Favorite Movies</string>
+    <string name="unknown_uri">Unknown uri</string>
+    <string name="failed_insert">Failed insert row into</string>
+    <string name="added_favorites">\u0020has been added to favorites</string>
+    <string name="deleted">\u0020 has been deleted from favorites</string>
+    <string name="no_favorites">There is not favorite movies</string>
+    <string name="loader_not_implemented">Loader not implemented:</string>
+</resources>

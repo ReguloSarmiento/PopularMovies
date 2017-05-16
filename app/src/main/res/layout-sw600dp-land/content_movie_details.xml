@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_poster_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16_margin"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/ic_launcher"
+            />
+
+        <TextView
+            android:id="@+id/genres"
+            android:layout_toRightOf="@+id/iv_poster_movie"
+            android:layout_marginTop="@dimen/size_16_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            style ="@style/TextStyleTitle"
+            android:textSize="@dimen/size_16_text"
+            android:text="@string/genres"
+            />
+
+        <TextView
+            android:id="@+id/tv_genres_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style ="@style/TextStyleItems"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:textSize="@dimen/size_14_text"
+            android:layout_below="@+id/genres"
+            android:layout_toEndOf="@+id/iv_poster_movie"
+            />
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16_margin"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:textSize="@dimen/size_16_text"
+            android:text="@string/release_date"
+            style ="@style/TextStyleTitle"
+            android:layout_below="@+id/tv_genres_movie"
+            android:layout_toEndOf="@+id/iv_poster_movie"
+            />
+
+        <TextView
+            android:id="@+id/tv_release_date_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style ="@style/TextStyleItems"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:textSize="@dimen/size_14_text"
+            android:layout_below="@+id/release_date"
+            android:layout_toEndOf="@+id/iv_poster_movie"
+            />
+
+        <TextView
+            android:id="@+id/popularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_16_margin"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:textSize="@dimen/size_16_text"
+            android:text="@string/popularity"
+            style ="@style/TextStyleTitle"
+            android:layout_below="@+id/tv_release_date_movie"
+            android:layout_toEndOf="@+id/iv_poster_movie"
+            />
+
+        <TextView
+            android:id="@+id/tv_vote_average_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/popularity"
+            android:layout_marginBottom="@dimen/size_16_margin"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:textSize="@dimen/size_14_text"
+            style ="@style/TextStyleItems"
+            android:layout_toEndOf="@+id/iv_poster_movie"
+            />
+
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            style ="@style/TextStyleTitle"
+            android:text="@string/overview"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/iv_poster_movie"
+            android:textSize="@dimen/size_18_text"
+            />
+
+        <!--<view-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/overview"/>-->
+
+        <TextView
+            android:id="@+id/tv_overview_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style ="@style/TextStyleItems"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            android:layout_marginRight="@dimen/size_16_margin"
+            android:layout_below="@+id/overview"
+            android:textSize="@dimen/size_17_text"
+            />
+
+        <TextView
+            android:id="@+id/trailers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            style ="@style/TextStyleTitle"
+            android:text="Trailers:"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_below="@+id/tv_overview_movie"
+            android:textSize="@dimen/size_18_text"
+            />
+
+        <HorizontalScrollView
+            android:id="@+id/scrollViewTrailers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_16_margin"
+            android:layout_marginStart="@dimen/size_16_margin"
+            android:layout_below="@+id/trailers"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="horizontal">
+                <LinearLayout
+                    android:id="@+id/layout_trailers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+      </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/reviewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/size_16_margin"
+            style ="@style/TextStyleTitle"
+            android:text="@string/review"
+            android:layout_below="@+id/scrollViewTrailers"
+            android:textSize="@dimen/size_18_text"
+        />
+
+        <LinearLayout
+            android:id="@+id/layout_reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_16_margin"
+            android:layout_marginStart="@dimen/size_16_margin"
+            android:layout_below="@+id/reviewTitle"
+            android:orientation="vertical"
+        />
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

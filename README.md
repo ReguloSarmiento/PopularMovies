@@ -2,7 +2,7 @@
 # Popular Movies App
 
 ![Screen](https://raw.githubusercontent.com/ReguloSarmiento/PopularMovies/master/poster_popular_movies.png)
-PopularMovies is an app that fetches movie data using [themoviedb.org](https://www.themoviedb.org/) API.
+Popular Movies created as a part of Associate Android Developer Fast Track Nanodegree Program. The app fetches movie data using [themoviedb.org](https://www.themoviedb.org/) API.
 
 ## Features:
 * Endless scrolling with RecyclerView

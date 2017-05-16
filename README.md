@@ -5,7 +5,7 @@
 PopularMovies is an app that fetches movie data using [themoviedb.org](https://www.themoviedb.org/) API.
 
 ## Features:
-* Endless Scrolling with RecyclerView
+* Endless scrolling with RecyclerView
 * UI optimized for different screen sizes.
 * Most popular and top rated movies.
 * Mark as favorite any movie for easy access in the future.

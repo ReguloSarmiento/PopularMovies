@@ -34,7 +34,7 @@ import regulo.udacity.popularmovies.utilities.NetworkHelper;
  */
 public class PopularMovieFragment extends Fragment implements IPopularMovieContract.View, RecyclerOnItemClickListener{
 
-    @BindView(R.id.recyclerview_movies)
+    @BindView(R.id.recyclerview_movies_popular)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.pb_progress)

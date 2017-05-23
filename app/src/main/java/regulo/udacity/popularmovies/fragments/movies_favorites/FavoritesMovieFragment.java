@@ -46,7 +46,7 @@ import static regulo.udacity.popularmovies.database.FavoritesMovieContract.Favor
 
 public class FavoritesMovieFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>, RecyclerOnItemClickListener {
 
-    @BindView(R.id.recyclerview_movies)
+    @BindView(R.id.recyclerview_movies_favorites)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.pb_progress)

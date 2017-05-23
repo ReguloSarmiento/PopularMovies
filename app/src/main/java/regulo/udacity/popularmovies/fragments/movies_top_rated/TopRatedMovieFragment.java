@@ -32,7 +32,7 @@ import regulo.udacity.popularmovies.utilities.NetworkHelper;
 
 public class TopRatedMovieFragment extends Fragment implements ITopRatedMovieContract.View, RecyclerOnItemClickListener {
 
-    @BindView(R.id.recyclerview_movies)
+    @BindView(R.id.recyclerview_movies_top)
     RecyclerView mRecyclerView;
 
     @BindView(R.id.pb_progress)

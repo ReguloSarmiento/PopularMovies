@@ -14,7 +14,7 @@ import regulo.udacity.popularmovies.restclient.IMovieRepository;
 public class PopularMoviePresenter implements IPopularMovieContract.UserActionsListener {
 
     /******************************************************************************************
-     MoviesPresenter retrieves data from the model {@link PopularMovieInteractor } and
+     MoviesPresenter retrieves data from the model {@link IMovieRepository } and
      notifies the view {@link  PopularMovieFragment } to display it.
      ******************************************************************************************/
 

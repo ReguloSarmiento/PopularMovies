@@ -23,7 +23,9 @@ public class Movie implements Parcelable{
     private int[] genre_ids;
     private String genres;
 
-    public Movie(int id, String title, String overview, String release_date, float popularity, float vote_average, String poster_path, String backdrop_path, String genres) {
+    public Movie(int id, String title, String overview, String release_date,
+                 float popularity, float vote_average, String poster_path,
+                 String backdrop_path, String genres) {
         this.id = id;
         this.title = title;
         this.overview = overview;

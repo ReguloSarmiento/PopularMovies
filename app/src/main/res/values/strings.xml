@@ -30,4 +30,6 @@
     <string name="deleted">\u0020 has been deleted from favorites</string>
     <string name="no_favorites">There is not favorite movies</string>
     <string name="loader_not_implemented">Loader not implemented:</string>
+
+    <string name="no_movie_selected">Please select a movie to see its information.</string>
 </resources>

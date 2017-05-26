@@ -1,10 +1,9 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="regulo.udacity.popularmovies.fragments.EmptyFragment"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="regulo.udacity.popularmovies.fragments.EmptyFragment">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -13,8 +12,21 @@
         android:background="?attr/colorPrimary"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_movie_selected"
+        android:textColor="@color/grey"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar"
+        android:textSize="17sp"
+        android:layout_marginTop="50dp"/>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/iv_empty_placeholder"
+        android:contentDescription="Logo"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_tmdb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

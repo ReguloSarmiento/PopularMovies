@@ -22,7 +22,6 @@
         android:layout_marginTop="50dp"/>
 
     <ImageView
-        android:id="@+id/iv_empty_placeholder"
         android:contentDescription="Logo"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/ic_tmdb"

@@ -155,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/size_16_margin"
             style ="@style/TextStyleTitle"
-            android:text="@string/review"
+            android:text="@string/result"
             android:layout_below="@+id/scrollViewTrailers"
             android:textSize="@dimen/size_18_text"
         />

@@ -19,9 +19,9 @@
     <string name="no_internet_connection">No Internet Connection</string>
 
     <string name="review_author">&lt;b>Author:&lt;/b> %s</string>
-    <string name="review">Review:</string>
+    <string name="result">Review:</string>
     <string name="error_loading_trailer">Can\'t load trailer!</string>
-    <string name="error_loading_reviews">Can\'t load reviews!</string>
+    <string name="error_loading_reviews">Can\'t load results!</string>
     <string name="by_favorite">Order by Favorites</string>
     <string name="favorites_movies">Favorite Movies</string>
     <string name="unknown_uri">Unknown uri</string>

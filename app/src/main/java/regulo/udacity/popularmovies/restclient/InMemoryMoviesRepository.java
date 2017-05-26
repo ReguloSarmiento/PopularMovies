@@ -61,4 +61,30 @@ public class InMemoryMoviesRepository implements IMovieRepository{
             Throwable -> Log.d(InMemoryMoviesRepository.class.getName(), Throwable.getMessage())
         );
     }
+
+    @Override
+    public void getReviews(@NonNull int movieID, @NonNull LoadReviewsCallback callback) {
+        mRestClient.getReviews(movieID)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(
+            response -> callback.onReviewsLoaded(response.getResults()),
+
+            Throwable -> callback.onReviewsFailure()
+        );
+    }
+
+    @Override
+    public void getTrailer(@NonNull int movieID, @NonNull LoadTrailerCallback callback) {
+        mRestClient.getTrailer(movieID)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(
+            response -> {
+              callback.onTrailerLoaded(response.getResults());
+            },
+
+            Throwable -> callback.onTrailerFailure()
+        );
+    }
 }

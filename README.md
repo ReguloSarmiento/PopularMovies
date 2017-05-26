@@ -9,7 +9,7 @@ Popular Movies created as a part of Associate Android Developer Fast Track Nanod
 * UI optimized for different screen sizes.
 * Most popular and top rated movies.
 * Mark as favorite any movie for easy access in the future.
-* Watch movie trailers and read movie reviews.
+* Watch movie trailers and read movie results.
 
 ## Used libraries:
 * [RxJava](https://github.com/ReactiveX/RxAndroid) and [Retrofit](http://square.github.io/retrofit/) libraries to manage Rest Client

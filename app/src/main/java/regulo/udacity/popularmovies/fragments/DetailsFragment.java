@@ -27,6 +27,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import regulo.udacity.popularmovies.R;
@@ -35,10 +37,9 @@ import regulo.udacity.popularmovies.database.FavoritesMovieContract;
 import regulo.udacity.popularmovies.models.Movie;
 import regulo.udacity.popularmovies.models.Review;
 import regulo.udacity.popularmovies.models.Trailer;
-import regulo.udacity.popularmovies.restclient.IRestClient;
+import regulo.udacity.popularmovies.restclient.IMovieRepository;
+import regulo.udacity.popularmovies.restclient.MovieRepositories;
 import regulo.udacity.popularmovies.restclient.RestUtils;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 import static regulo.udacity.popularmovies.restclient.RestUtils.THUMBNAIL_URL_YOUTUBE_MD;
 
@@ -78,7 +79,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     private Movie mMovie;
     private final int FAVORITE_MOVIE_ID = 101;
     private boolean isFavorite;
-    private final IRestClient mRestClient = RestUtils.createRestClient();
+    private IMovieRepository mRepository;
 
     public DetailsFragment() { }
 
@@ -93,6 +94,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mRepository = MovieRepositories.getInMemoryRepoInstance(RestUtils.createRestClient());
         if (getArguments() != null) {
             mMovie = getArguments().getParcelable(RestUtils.TAG);
         }
@@ -202,7 +204,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
     /**
      * Creates a LinearLayout view that displays a preview image for the movie trailer.
-     * @param trailer {@link Trailer}
+     * @param trailer {@link Trailer.result trailer}
      * @return {@link LinearLayout}
      */
     private LinearLayout movieTrailer(Trailer.result trailer) {
@@ -230,23 +232,23 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
 
 
     /**
-     * Creates a LinearLayout view that displays a TextView with a movie review.
-     * @param review {@link Review}
+     * Creates a LinearLayout view that displays a TextView with a movie result.
+     * @param result {@link Review}
      * @return {@link LinearLayout}
      */
-    private LinearLayout movieReview(Review.Result review) {
+    private LinearLayout movieReview(Review.Result result) {
 
         LinearLayout mReviewLinearLayout = new LinearLayout(getActivity());
         mReviewLinearLayout.setOrientation(LinearLayout.VERTICAL);
         int padding = getResources().getDimensionPixelOffset(R.dimen.size_5_margin);
 
         TextView authorTv = new TextView(getActivity());
-        authorTv.setText(fromHtml(String.format(getResources().getString(R.string.review_author), review.getAuthor())));
+        authorTv.setText(fromHtml(String.format(getResources().getString(R.string.review_author), result.getAuthor())));
         authorTv.setPadding(0, padding, 0, padding);
         mReviewLinearLayout.addView(authorTv);
 
         TextView contentTv = new TextView(getActivity());
-        contentTv.setText(review.getContent());
+        contentTv.setText(result.getContent());
         mReviewLinearLayout.addView(contentTv);
 
         View divider = new View(getActivity());
@@ -258,36 +260,38 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     }
 
     private void setMovieTrailers(int movieID) {
-        mRestClient.getTrailer(movieID)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> {
-                            for (Trailer.result trailer : response.getResults()) {
-                                LinearLayout linearLayout = movieTrailer(trailer);
-                                mListTrailers.addView(linearLayout);
-                            }
-                        },
+        mRepository.getTrailer(movieID, new IMovieRepository.LoadTrailerCallback() {
+            @Override
+            public void onTrailerLoaded(List<Trailer.result> trailers) {
+                for (Trailer.result trailer : trailers) {
+                    LinearLayout linearLayout = movieTrailer(trailer);
+                    mListTrailers.addView(linearLayout);
+                }
+            }
 
-                        Throwable -> Log.d(DetailsActivity.class.getSimpleName(), getString(R.string.error_loading_trailer))
-                );
+            @Override
+            public void onTrailerFailure() {
+                Log.d(DetailsActivity.class.getSimpleName(), getString(R.string.error_loading_trailer));
+            }
+        });
     }
 
 
     private void setMovieReviews(int movieID) {
-        mRestClient.getReviews(movieID)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> {
-                            for (Review.Result review : response.getReviews()) {
-                                LinearLayout linearLayout = movieReview(review);
-                                mListReviews.addView(linearLayout);
-                            }
-                        },
+        mRepository.getReviews(movieID, new IMovieRepository.LoadReviewsCallback() {
+            @Override
+            public void onReviewsLoaded(List<Review.Result> results) {
+                for (Review.Result result : results) {
+                    LinearLayout linearLayout = movieReview(result);
+                    mListReviews.addView(linearLayout);
+                }
+            }
 
-                        Throwable -> Log.d(DetailsActivity.class.getSimpleName(), getString(R.string.error_loading_reviews))
-                );
+            @Override
+            public void onReviewsFailure() {
+                Log.d(DetailsActivity.class.getSimpleName(), getString(R.string.error_loading_reviews));
+            }
+        });
     }
 
 

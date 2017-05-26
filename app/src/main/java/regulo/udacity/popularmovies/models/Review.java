@@ -43,12 +43,12 @@ public class Review {
         this.total_pages = total_pages;
     }
 
-    public List<Result> getReviews() {
+    public List<Result> getResults() {
         return results;
     }
 
-    public void setReviews(List<Result> reviews) {
-        this.results = reviews;
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     public class Result {

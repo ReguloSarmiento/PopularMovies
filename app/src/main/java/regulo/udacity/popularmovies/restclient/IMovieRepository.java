@@ -19,7 +19,9 @@ public interface IMovieRepository {
         void onMoviesFailure();
     }
 
-    void getMovies(@NonNull final int page, @NonNull LoadMoviesCallback callback);
+    void getPopular(@NonNull final int page, @NonNull LoadMoviesCallback callback);
+
+    void getTopRated(@NonNull final int page, @NonNull LoadMoviesCallback callback);
 
     void getGenres(@NonNull final Context context);
 }

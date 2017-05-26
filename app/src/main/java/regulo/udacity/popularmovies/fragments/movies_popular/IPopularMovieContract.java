@@ -30,7 +30,7 @@ public interface IPopularMovieContract {
          * @param page number.
          * @param context {@link Context}
          */
-        void makeRequest(final int page, final Context context);
+        void getPopularMovies(final int page, final Context context);
     }
 
 }

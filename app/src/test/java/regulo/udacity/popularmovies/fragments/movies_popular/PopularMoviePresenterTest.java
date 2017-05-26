@@ -54,9 +54,9 @@ public class PopularMoviePresenterTest {
 
     @Test
     public void shouldLoadPopularMoviesFromRepositoryIntoTheView() {
-        mPresenter.makeRequest(anyInt(), mContext);
+        mPresenter.getPopularMovies(anyInt(), mContext);
 
-        verify(mRepository).getMovies(anyInt(), mLoadMoviesCallbackCaptor.capture());
+        verify(mRepository).getPopular(anyInt(), mLoadMoviesCallbackCaptor.capture());
         mLoadMoviesCallbackCaptor.getValue().onMoviesLoaded(MOVIES);
 
         verify(mView).onLoadedSuccess(MOVIES);
@@ -64,9 +64,9 @@ public class PopularMoviePresenterTest {
 
     @Test
     public void shouldShowAMessageWhenTheApiThrowAnError(){
-        mPresenter.makeRequest(anyInt(), mContext);
+        mPresenter.getPopularMovies(anyInt(), mContext);
 
-        verify(mRepository).getMovies(anyInt(), mLoadMoviesCallbackCaptor.capture());
+        verify(mRepository).getPopular(anyInt(), mLoadMoviesCallbackCaptor.capture());
         mLoadMoviesCallbackCaptor.getValue().onMoviesFailure();
 
         verify(mView).onLoadedFailure();

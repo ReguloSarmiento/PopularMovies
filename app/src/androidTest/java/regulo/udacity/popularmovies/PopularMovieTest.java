@@ -30,7 +30,7 @@ public class PopularMovieTest {
   @Test
   public void clickOnGridViewItem(){
     onView(ViewMatchers.withId(R.id.recyclerview_movies_popular))
-            .perform(RecyclerViewActions.actionOnItemAtPosition(5, click()));
+            .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
 
     onView(withId(R.id.tv_genres_movie)).check(matches(withText(GENRES)));
   }

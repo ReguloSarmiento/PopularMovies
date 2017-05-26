@@ -82,7 +82,7 @@ public class PopularMovieFragment extends Fragment implements IPopularMovieContr
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.makeRequest(RestUtils.FIRST_PAGE, getContext());
+        mPresenter.getPopularMovies(RestUtils.FIRST_PAGE, getContext());
     }
 
     private void setUI() {

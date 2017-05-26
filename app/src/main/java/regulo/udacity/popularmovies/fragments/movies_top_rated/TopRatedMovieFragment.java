@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +18,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import regulo.udacity.popularmovies.R;
-import regulo.udacity.popularmovies.activities.MainActivity;
 import regulo.udacity.popularmovies.adapters.GridMovieAdapter;
-import regulo.udacity.popularmovies.fragments.movies_popular.PopularMoviePresenter;
 import regulo.udacity.popularmovies.interfaces.IOnClickListener;
 import regulo.udacity.popularmovies.listeners.RecyclerOnItemClickListener;
 import regulo.udacity.popularmovies.listeners.RecyclerViewScrollListener;
 import regulo.udacity.popularmovies.models.Movie;
+import regulo.udacity.popularmovies.restclient.MovieRepositories;
 import regulo.udacity.popularmovies.restclient.RestUtils;
 import regulo.udacity.popularmovies.utilities.DeviceHelper;
 import regulo.udacity.popularmovies.utilities.NetworkHelper;
@@ -58,6 +56,14 @@ public class TopRatedMovieFragment extends Fragment implements ITopRatedMovieCon
         }
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPresenter = new TopRatedMoviePresenter(
+                        this,
+                        MovieRepositories.getInMemoryRepoInstance(RestUtils.createRestClient())
+        );
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,7 +77,12 @@ public class TopRatedMovieFragment extends Fragment implements ITopRatedMovieCon
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setUI();
-        callAPI();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.getTopRatedMovies(RestUtils.FIRST_PAGE);
     }
 
     private void setUI() {
@@ -80,10 +91,6 @@ public class TopRatedMovieFragment extends Fragment implements ITopRatedMovieCon
         NetworkHelper.addNoInternetView(mRecyclerView, getContext());
     }
 
-    private void callAPI() {
-        mPresenter = new TopRatedMoviePresenter(this);
-        mPresenter.makeRequest(RestUtils.FIRST_PAGE);
-    }
 
     @Override
     public void onLoadedSuccess(List<Movie> movies) {
@@ -99,8 +106,8 @@ public class TopRatedMovieFragment extends Fragment implements ITopRatedMovieCon
     }
 
     @Override
-    public void onLoadedFailure(String message) {
-        Log.d(MainActivity.class.getSimpleName(), message);
+    public void onLoadedFailure() {
+       // Log.d(MainActivity.class.getSimpleName(), message);
     }
 
     @Override

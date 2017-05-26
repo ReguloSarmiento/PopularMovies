@@ -21,7 +21,7 @@ public class InMemoryMoviesRepository implements IMovieRepository{
     }
 
     @Override
-    public void getMovies(@NonNull int page, @NonNull LoadMoviesCallback callback) {
+    public void getPopular(@NonNull int page, @NonNull LoadMoviesCallback callback) {
         mRestClient.getPopularMovies(page)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -35,6 +35,18 @@ public class InMemoryMoviesRepository implements IMovieRepository{
                     //if fails, gets the error message from the server and then notifies to the presenter.
                     callback.onMoviesFailure();
                 }
+            );
+    }
+
+    @Override
+    public void getTopRated(@NonNull int page, @NonNull LoadMoviesCallback callback) {
+        mRestClient.getTopRatedMovies(page)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                response -> callback.onMoviesLoaded(response.getResults()),
+
+                Throwable -> callback.onMoviesFailure()
             );
     }
 

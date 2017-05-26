@@ -19,33 +19,16 @@ public interface ITopRatedMovieContract {
 
         /**
          * Shows a TextView
-         * @param message An error from the Api.
          */
-        void onLoadedFailure(final String message);
+        void onLoadedFailure();
     }
 
-    interface Presenter {
+    interface UserActionsListener  {
 
         /**
-         * Calls the Api to get the list of movies with a page number given and
-         * the list of genres as well.
+         * Calls the Api to get the list of the top rated movies.
          * @param page number.
          */
-        void makeRequest(final int page);
-    }
-
-    interface InteractorFinishedListener {
-
-        /**
-         *  Gets the list of movies and then send it to the Presenter.
-         * @param movies list of movies.
-         */
-        void onNetworkSuccess(final List<Movie> movies);
-
-        /**
-         *  if there is a problem, it will get an error message.
-         * @param message An error from the server.
-         */
-        void onNetworkFailure(final String message);
+        void getTopRatedMovies(final int page);
     }
 }

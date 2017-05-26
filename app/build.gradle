@@ -82,6 +82,10 @@ dependencies {
     //Picasso
     compile 'com.squareup.picasso:picasso:2.3.2'
 
+    //Guava
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+
+
 }
 
 def loadKeyFromLocalProperties(String key) {

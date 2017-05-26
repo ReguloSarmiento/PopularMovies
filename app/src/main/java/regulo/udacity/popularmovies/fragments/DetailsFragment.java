@@ -14,6 +14,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
@@ -112,6 +113,7 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setCellValues();
+        setToolbar();
         setFloatingActionButton();
 
         getLoaderManager().initLoader(FAVORITE_MOVIE_ID, null, this);
@@ -147,6 +149,12 @@ public class DetailsFragment extends Fragment implements LoaderManager.LoaderCal
             isFavorite = false;
 
         });
+    }
+
+    private void setToolbar() {
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(mToolbar);
+        activity.getSupportActionBar().setTitle(mMovie.getTitle());
     }
 
     private void setCellValues() {

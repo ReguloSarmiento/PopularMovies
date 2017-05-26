@@ -8,6 +8,8 @@ import regulo.udacity.popularmovies.utilities.SharedPrefsHelper;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 /**
  * Concrete implementation to load Movies from the API.
  */
@@ -16,8 +18,8 @@ public class InMemoryMoviesRepository implements IMovieRepository{
 
     private final IRestClient mRestClient;
 
-    public InMemoryMoviesRepository(IRestClient mRestClient) {
-        this.mRestClient = mRestClient;
+    public InMemoryMoviesRepository(@NonNull IRestClient mRestClient) {
+        this.mRestClient = checkNotNull(mRestClient, "RestClient cannot be null!");
     }
 
     @Override
@@ -80,9 +82,7 @@ public class InMemoryMoviesRepository implements IMovieRepository{
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
-            response -> {
-              callback.onTrailerLoaded(response.getResults());
-            },
+            response -> callback.onTrailerLoaded(response.getResults()),
 
             Throwable -> callback.onTrailerFailure()
         );
